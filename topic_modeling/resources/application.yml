@@ -1,0 +1,30 @@
+server:
+  port: 80
+
+rabbitmq:
+  host: ${RABBITMQ_HOST:localhost}
+  port: ${RABBITMQ_PORT:5672}
+  username: ${RABBITMQ_USERNAME:dreipc}
+  password: ${RABBITMQ_PASSWORD:password}
+  exchange: assets
+  vhost: ${RABBITMQ_VHOST:/}
+
+mongodb:
+  username: ${MONGO_USERNAME:dreipc}
+  password: ${MONGO_PASSWORD:secret}
+  database: ${MONGO_DATABASE:example-database}
+  port: ${MONGO_PORT:27017}
+  host: ${MONGO_HOST:localhost}
+  auto-index-creation: true
+
+service:
+  service_name: ${AI_MODELL_SERVICE_NAME:topic-modelling-service}
+
+
+modell:
+  modell_name: ${AI_MODELL:blm-20-topic-modeling}
+  version: ${AI_MODELL_VERSION:0.0.3}
+  collection: ${AI_MODELL_COLLECTION:topic_modeling_collection}
+  language: ${AI_MODELL_LANGUAGE:DE}
+  modell_nexus_name: ${AI_MODELL_NEXUS_NAME:lda_wraped.gensim}
+  project_id: ${PROJECT_ID:6334534d2583b028b2cef7e0}

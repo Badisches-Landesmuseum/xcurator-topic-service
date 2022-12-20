@@ -1,0 +1,47 @@
+LSA:
+
+Latent Semantic Analysis.The core idea is to take a matrix of what we have — documents and terms — and decompose
+it into a separate document-topic matrix and a topic-term matrix.
+
+Pros:
+It gives decent results, much better than a plain vector space model. LSA is fast and easy to implement.
+
+Cons:
+Since it is a linear model, it might not do well on datasets with non-linear dependencies.
+LSA assumes a Gaussian distribution of the terms in the documents, which may not be true for all problems.
+LSA involves SVD, which is computationally intensive and hard to update as new data comes up.
+
+
+LDA:
+
+Latent Dirichlet Allocation. LDA is a Bayesian version of pLSA.
+In particular, it uses dirichlet priors for the document-topic and word-topic distributions,
+lending itself to better generalization.
+
+Pros:
+Fast and on average works reliable. The document vectors are often sparse,
+low-dimensional and highly interpretable, highlighting the pattern and structure in documents
+
+Cons:
+It is used to represent the documents, LDA can suffer from the same disadvantages as the bag-of-words model. The LDA
+model learns a document vector that predicts words inside of that document while disregarding any structure or how
+these words interact on a local level.
+
+
+LDA2VecModel:
+
+lda2vec is an extension of word2vec and LDA that jointly learns word, document, and topic vectors.
+lda2vec specifically builds on top of the skip-gram model of word2vec to generate word vectors.
+word2vec is a neural net that learns a word embedding by trying to use the input word to predict surrounding context words.
+With lda2vec, instead of using the word vector directly to predict context words, leverages a context vector
+to make the predictions.
+
+Pros:
+The power of lda2vec lies in the fact that it not only learns word embeddings (and context vector embeddings) for words, it
+simultaneously learns topic representations and document representations as well.
+
+Cons:
+This algorithm is very much so a research algorithm. It doesn't always work so well,
+and you have to train it for a long time. As the author noted in the paper, most of
+the time normal LDA will work better. Note that you should run this algorithm for
+at least 100 epochs before expecting to see any results. The algorithm is meant to run for a very long time.

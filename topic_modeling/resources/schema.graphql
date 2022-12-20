@@ -1,0 +1,45 @@
+type Query {
+    detectPageIDTopics(page_id: String!): TopicDetection
+}
+
+type Document @extends @key(fields: "id") {
+    id: ID! @external
+    topicTrio: [TopicTrio]
+    topicDetectionStatus: AnalyseStatus!
+}
+
+type Page @extends @key(fields: "id") {
+    id: ID! @external
+    topicDetection: TopicDetection!
+
+}
+
+type TopicDetection {
+    topicTrio: [TopicTrio]
+    topicDetectionStatus: AnalyseStatus!
+    paragraphTopicTrio: [ParagraphTopicTrio]
+}
+
+#top1
+type TopicTrio {
+    top0: String!
+    top1: String!
+    top2: String!
+}
+
+#camelcase
+type ParagraphTopicTrio {
+    paragraphTop0: String
+    paragraphTop1: String
+    paragraphTop2: String
+    startPos: Int!
+    endPos: Int!
+}
+
+enum AnalyseStatus {
+    NOT_STARTED,
+    PENDING,
+    DONE,
+    VERIFIED,
+    ERROR
+}

@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package dreipc.asset.topicmodeling;
+
+option java_package = "dreipc.q8r.proto.asset.document";
+option java_outer_classname = "TopicDetectionProtos";
+
+message TopicDetectionActionProto {
+  string documentId = 1;
+  string projectId = 2;
+  string fileUrl = 3;
+}
+
+message TopicDeletionActionProto {
+  string documentId = 1;
+  string projectId = 2;
+  string providedBy = 3;
+  EnrichmentStatusProto status = 4;
+}
+
+message TopicDetectionProto {
+  string documentId = 1;
+  string projectId = 2;
+  repeated TopicObjectProto topics = 3;
+  string providedBy = 4;
+  EnrichmentStatusProto status = 5;
+  repeated PageTopicsProto pageTopics = 6;
+}
+
+
+message PageTopicsProto {
+  repeated string topics = 1;
+  string pageId = 2;
+}
+
+message TopicObjectProto {
+  string topic = 1;
+}
+
+enum EnrichmentStatusProto {
+  NOT_STARTED = 0;
+  PENDING = 1;
+  DONE = 2;
+  VERIFIED = 3;
+  ERROR = 4;
+}
+
+

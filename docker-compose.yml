@@ -1,0 +1,27 @@
+services:
+  rabbitmq:
+    image: bitnami/rabbitmq:3.8-debian-10
+    ports:
+      - '5672:5672' # Connection Port
+      - '15672:15672' # Manager Port
+    environment:
+      RABBITMQ_USERNAME: dreipc
+      RABBITMQ_PASSWORD: password
+
+  mongodb:
+    container_name: mongodb
+    image: 'bitnami/mongodb:4.2-debian-10'
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongodb_data:/bitnami/mongodb'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MONGODB_USERNAME=dreipc
+      - MONGODB_PASSWORD=secret
+      - MONGODB_DATABASE=example-database
+      - MONGODB_ROOT_PASSWORD=secret
+
+volumes:
+  mongodb_data:
+    driver: local

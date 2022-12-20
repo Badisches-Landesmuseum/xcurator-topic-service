@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package dreipc.q8r.proto.asset;
+option java_package = "dreipc.q8r.proto.asset";
+option java_outer_classname = "AssetProtos";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message DeleteProjectAssets {
+  string id = 1;
+  string name = 2;
+  int32 count = 3;
+}
+
+message ProjectAsset {
+  string id = 1;
+  string projectId = 2;
+  AssetTypeProto type = 3;
+}
+
+message ImageProto {
+  string id = 1;
+  AssetTypeProto type = 2;
+  google.protobuf.Timestamp uploadedTime = 3;
+  AssetFileProto file = 4;
+  ImageMetadataProto metadata = 5;
+  GeoLocationProto createdAt = 6;
+  map<string, string> externalIds = 7;
+  string projectId = 8;
+  int64 version = 9;
+  AssetDescriptionProto description = 10;
+  string previewUrl = 11;
+}
+
+message ImageMetadataProto {
+  int32 height = 1;
+  int32 width = 2;
+  int32 xResolution = 3;
+  int32 yResolution = 4;
+  ImageOrientationProto orientation = 5;
+  string colorSpace = 6;
+  string primaryColor = 7;
+}
+
+message GeoLocationProto {
+  // The latitude in degrees. It must be in the range [-90.0, +90.0].
+  double latitude = 1;
+  // The longitude in degrees. It must be in the range [-180.0, +180.0].
+  double longitude = 2;
+  string name = 3;
+  string countryCode = 4;
+}
+
+enum ImageOrientationProto {
+  PORTRAIT = 0;
+  LANDSCAPE = 1;
+}
+
+message DocumentProto {
+  string id = 1;
+  AssetTypeProto type = 2;
+  google.protobuf.Timestamp uploadedTime = 3;
+  AssetFileProto file = 4;
+  DocumentMetadataProto metadata = 5;
+  map<string, string> externalIds = 6;
+  string projectId = 7;
+  repeated DocumentPageProto pages = 8;
+  int64 version = 9;
+  AssetDescriptionProto description = 10;
+  string previewUrl = 11;
+}
+
+message DocumentMetadataProto {
+  int32 wordCount = 1;
+  int32 pageCount = 2;
+  string languageName = 3;
+}
+
+message DocumentPageProto {
+  string id = 1;
+  string html = 2;
+  repeated ImageProto images = 3;
+  repeated string links = 4;
+  int32 pageNumber = 5;
+  int64 version = 8;
+}
+
+message AudioProto {
+  string id = 1;
+  AssetTypeProto type = 2;
+  google.protobuf.Timestamp uploadedTime = 3;
+  AssetFileProto file = 4;
+  AudioMetadataProto metadata = 5;
+  map<string, string> externalIds = 6;
+  string projectId = 7;
+  int64 version = 8;
+  AssetDescriptionProto description = 9;
+  string previewUrl = 10;
+}
+
+message AudioMetadataProto {
+  int32 sampleRate = 1;
+  int32 channelsCount = 2;
+  google.protobuf.Duration duration = 3;
+  string audioCompressor = 4;
+  google.protobuf.Timestamp creationTime = 5;
+  google.protobuf.Timestamp lastModifiedTime = 6;
+}
+
+message VideoProto {
+  string id = 1;
+  AssetTypeProto type = 2;
+  google.protobuf.Timestamp uploadedTime = 3;
+  AssetFileProto file = 4;
+  VideoMetadataProto metadata = 5;
+  map<string, string> externalIds = 6;
+  string projectId = 7;
+  int64 version = 8;
+  AssetDescriptionProto description = 9;
+  string previewUrl = 10;
+}
+
+message VideoMetadataProto {
+  google.protobuf.Duration duration = 1;
+  int32 Height = 2;
+  int32 Width = 3;
+  int32 yResolution = 4;
+  int32 xResolution = 5;
+  float frameRate = 6;
+  float preferredVolume = 7;
+  int32 audioSampleRate = 8;
+  string audioFormat = 9;
+  string videoCompressor = 10;
+  float averageBitRate = 11;
+}
+
+enum AssetTypeProto {
+  IMAGE = 0;
+  DOCUMENT = 1;
+  AUDIO = 2;
+  VIDEO = 3;
+}
+
+message AssetFileProto {
+  string url = 1;
+  string name = 2;
+  string path = 3;
+  string md5checksum = 4;
+  int64 siteInBytes = 5;
+  string mimeType = 6;
+}
+
+message AssetOwnershipProto {
+  string ownerName = 1;
+  string creatorName = 2;
+  string copyRight = 3;
+  string provider = 4;
+}
+
+message AssetDescriptionProto {
+  string title = 1;
+  string shortAbstract = 2;
+  repeated string keywords = 3;
+}
+
+message AssetPreviewImageProto {
+  string url = 1;
+  string shortDescription = 2;
+}

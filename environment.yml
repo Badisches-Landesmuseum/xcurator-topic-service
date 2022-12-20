@@ -1,0 +1,22 @@
+name: topic-modeling
+channels:
+  - conda-forge
+dependencies:
+  - uvicorn==0.17.6
+  - fastapi==0.75.2
+  - pandas==1.4.2
+  - spacy==3.2.1
+  - python==3.8.12
+  - gensim==4.0.0
+  - protobuf==3.18.0
+  - pymongo==4.1.1
+  - scikit-learn==1.0.2
+  - xgboost==0.90
+  - pip
+  - pip:
+      - ./libs/version_query-1.2.0-py3-none-any.whl
+      - ./libs/3pc-py-config-0.0.9.dev3.tar.gz
+      - ./libs/3pc-rabbitmq-proto-lib-0.0.83.tar.gz
+      - ./libs/3pc-text-preprocessing-0.0.1.tar.gz
+      - ariadne==0.15.1
+      - ariadne-extensions==0.1.6

@@ -1,0 +1,7 @@
+# Whitelist approach
+# Exclude everything: 
+*
+# Include as exceptions
+!topic_modeling
+!/opt/conda
+!environment.yml
